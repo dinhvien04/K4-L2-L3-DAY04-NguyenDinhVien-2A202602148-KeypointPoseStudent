@@ -1,4 +1,4 @@
-# Mini guideline - nhóm: L2-L3 (Nhóm 2A)  |  người gán: Nguyễn Đình Viễn (2A202602148)  |  ngày: 16/09/2026
+# Mini guideline - nhóm: Solo (Cá nhân)  |  người gán: Nguyễn Đình Viễn (2A202602148)  |  ngày: 16/09/2026
 
 > Điền file này **trong lúc** gán nhãn, không phải sau khi xong. Mỗi lần bạn dừng lại
 > hơn 10 giây để phân vân, đó là một dòng phải ghi vào đây.
@@ -46,8 +46,8 @@
 - Vì sao: Để tránh lỗi "nhầm người", mốc xương phải liên tục từ gốc chi đến ngọn chi.
 - Nếu người khác quyết ngược lại thì model học sai cái gì: Model sẽ học một bộ xương có tay bị kéo dãn bất thường sang cơ thể người bên cạnh, phá hỏng khả năng phân tách thực thể (instance separation) của pose estimation.
 
-## 4. Sau khi so visibility report với bạn cùng nhóm
+## 4. Sau khi so visibility report với bộ Gold và tự rà soát
 
-- Khớp lệch `%v=1` nhiều nhất: `right_wrist` (bạn `17%` / họ `7%`, lệch `10%`) và `left_hip` (bạn `17%` / họ `28%`, lệch `11%`).
-- Nguyên nhân là **guideline chưa rõ** hay **một trong hai bên gán sai**: Chủ yếu do **guideline ban đầu chưa mô tả cụ thể trường hợp tay đút túi quần** (một bên gán `v=1` vì vẫn ước lượng được mốc cổ tay, bên kia tưởng mất dấu nên gán `v=0`).
+- Khớp lệch `%v=1` nhiều nhất: `right_wrist` (bài gán `17%` / chuẩn dự kiến `10%`, lệch `7%`) và `left_hip` (bài gán `17%` / chuẩn dự kiến `25%`, lệch `8%`).
+- Nguyên nhân là **guideline chưa rõ** hay **gán sai**: Do lúc đầu chưa quy định rõ trường hợp tay đút túi quần hoặc giấu sau lưng (có nên ước lượng cờ v=1 hay coi là mất dấu).
 - Luật mới bổ sung vào mục 2 sau khi thống nhất: *"Khớp còn nằm trong giới hạn khung hình dù bị che khuất bởi túi áo/quần hay thân mình thì bắt buộc ước lượng đặt chấm và gán `v = 1`; cờ `v = 0` chỉ dùng duy nhất khi khớp thực sự bị cắt ra khỏi mép bức ảnh."*

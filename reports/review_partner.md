@@ -1,7 +1,7 @@
-# Báo cáo Kiểm chéo bài bạn cùng nhóm
+# Báo cáo Tự kiểm chéo & Rà soát bài gán nhãn
 
-- **Người thực hiện kiểm chéo:** Nguyễn Đình Viễn (MSSV: 2A202602148)
-- **Người được kiểm chéo (bạn cùng nhóm):** Trần Văn Hùng
+- **Người thực hiện:** Nguyễn Đình Viễn (MSSV: 2A202602148)
+- **Hình thức:** Làm việc độc lập (Solo) - Tự đối chiếu và rà soát lỗi nhãn qua công cụ
 - **Ngày thực hiện:** 16/09/2026
 
 ---

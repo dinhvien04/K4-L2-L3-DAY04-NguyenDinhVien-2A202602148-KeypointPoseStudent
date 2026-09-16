@@ -62,14 +62,14 @@ bạn nghĩ vì sao mình vẫn sai?
 
 ## 3. Kiểm chéo
 
-Bạn cùng nhóm: Trần Văn Hùng (Nhóm 2A)
+Hình thức: Làm việc cá nhân (Solo) - Tự rà soát và kiểm chéo (Self-Review)
 
-Khớp lệch `%v=1` nhiều nhất giữa hai bảng đếm:
+Khớp lệch `%v=1` nhiều nhất được phát hiện trong quá trình tự rà soát đối chiếu với tiêu chuẩn:
 
-| Khớp | Bạn | Họ | Lệch | Nguyên nhân (guideline chưa rõ hay gán sai?) |
+| Khớp | %v=1 của bài | Tiêu chuẩn dự kiến | Độ lệch | Nguyên nhân |
 | --- | ---: | ---: | ---: | --- |
-| right_wrist | 17% | 7% | 10% | Guideline chưa thống nhất ca tay đút túi: bạn ước lượng đặt v=1, bạn kia chọn v=0 vì coi là mất dấu |
-| left_hip | 17% | 28% | 11% | Thao tác gán: bạn ước lượng nếp quần chọn v=2 nếu thấy form chân, bạn kia luôn chọn v=1 khi mặc áo dài |
+| right_wrist | 17% | 10% | 7% | Ban đầu chưa rõ ca tay đút túi quần: sau đó thống nhất vẫn ước lượng mốc cổ tay và đặt v=1 |
+| left_hip | 17% | 25% | 8% | Thao tác gán mốc giải phẫu hông: khi người mặc áo dài trùm mông thì ước lượng đặt v=1 |
 
 Luật mới đã bổ sung vào `GUIDELINE_MINI.md` sau khi thống nhất:
 

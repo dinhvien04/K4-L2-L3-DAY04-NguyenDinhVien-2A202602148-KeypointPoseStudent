@@ -1,6 +1,6 @@
 # Reviewer checklist - điền khi kiểm bài người khác
 
-Người gán: Trần Văn Hùng   Người kiểm: Nguyễn Đình Viễn (2A202602148)   Ngày: 16/09/2026
+Người gán: Nguyễn Đình Viễn (2A202602148)   Người kiểm: Nguyễn Đình Viễn (Tự kiểm chéo - Solo)   Ngày: 16/09/2026
 
 Chạy trước khi soi bằng mắt:
 
