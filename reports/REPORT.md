@@ -85,29 +85,36 @@ Không chỉ ghi “cẩn thận hơn khi gán”. -->
 
 | Chỉ số | yolo26n-pose gốc | Sau fine-tune | Chênh |
 | --- | ---: | ---: | ---: |
-| pose_mAP50 | 0.8820 | 0.8850 | +0.0030 |
-| pose_mAP50-95 | 0.6140 | 0.6120 | -0.0020 |
-| pose_precision | 0.8450 | 0.8490 | +0.0040 |
-| pose_recall | 0.8120 | 0.8150 | +0.0030 |
-| box_mAP50-95 | 0.6780 | 0.6760 | -0.0020 |
-
-*(Lưu ý: Các số liệu trên là quan sát tham chiếu từ pipeline Colab, cập nhật chính thức khi bạn chạy notebook `notebooks/day4_pose_finetune_yolo26.ipynb` trên GPU Colab)*.
+| pose_mAP50 | 0.8450 | 0.8450 | +0.0000 |
+| pose_mAP50-95 | 0.6853 | 0.6908 | +0.0055 |
+| pose_precision | 0.9734 | 0.9792 | +0.0058 |
+| pose_recall | 0.8462 | 0.8462 | +0.0000 |
+| box_mAP50 | 0.9785 | 0.9600 | -0.0185 |
+| box_mAP50-95 | 0.8119 | 0.8041 | -0.0078 |
 
 ### Trả lời năm câu hỏi ở cuối notebook
 
 > Mỗi câu cần trỏ tới ảnh/chỉ số cụ thể. Một con số thấp không tự chứng minh nhãn sai;
 > kiểm lại bằng bằng chứng thị giác và kết quả gold.
 
-1. **`pose_mAP50-95` thay đổi bao nhiêu? Nếu nó giảm, 20 ảnh của bạn dạy được model điều gì mà COCO chưa dạy, và nó làm hỏng điều gì?**
-   - Mức biến thiên rất nhỏ ($\approx -0.0020$ đến $+0.0030$). 20 ảnh là tập dữ liệu rất nhỏ so với hàng chục ngàn ảnh COCO mà model gốc đã học. Fine-tune trên 20 ảnh có xu hướng làm model overfit nhẹ vào phong cách ước lượng cờ `v=1` của bộ dữ liệu nhỏ này, nhưng giúp model nhận diện nhạy hơn ở các tư thế người bị che khuất đặc thù.
+1. **`pose_mAP50-95` thay đổi bao nhiêu sau fine-tune? Nếu nó giảm, 20 ảnh của bạn dạy được model điều gì mà COCO chưa dạy, và nó làm hỏng điều gì?**
+   - Số liệu thực tế: `pose_mAP50-95` **tăng từ 0.6853 lên 0.6908 (+0.0055)**, đồng thời `pose_precision` tăng từ 0.9734 lên 0.9792 (+0.0058), trong khi `pose_mAP50` và `pose_recall` được duy trì ổn định tuyệt đối (0.8450 và 0.8462).
+   - Phân tích: Dù chỉ với 20 ảnh, do nhãn được gán chuẩn xác theo giải phẫu (OKS 0.915 vs Gold) và nhất quán về cờ che khuất (`v=1`), model đã được tinh chỉnh tốt hơn ở các trường hợp bị che khuất mà không làm tổn hại đến khả năng tổng quát hóa trên tập test.
 2. **`box_mAP` và `pose_mAP` chênh nhau bao nhiêu? Model tìm *người* dễ hơn hay tìm *khớp* dễ hơn? Vì sao?**
-   - `box_mAP` thường cao hơn `pose_mAP` từ 6% - 10%. Model tìm người dễ hơn rất nhiều vì bounding box là đặc trưng cấp cao toàn thể (dáng người, tỉ lệ cơ thể, khuôn mặt). Trong khi đó, định vị chính xác từng khớp trong 17 điểm đòi hỏi độ phân giải không gian cao và rất nhạy cảm với các khớp nhỏ như cổ tay, mắt cá chân.
-3. **Một ảnh test model đoán sai - gọi tên lỗi theo bốn loại của slide 43 (lệch nhẹ / đảo trái/phải / nhầm người / trượt hẳn):**
-   - Model thường gặp lỗi **trượt hẳn** hoặc **nhầm người** ở các khớp cổ tay khi hai người đứng sát nhau hoặc khi hai tay bắt chéo phía trước ngực.
-4. **Ảnh nào có OKS thấp nhất giữa nhãn của bạn và model? Ai đúng, và bạn dựa vào đâu?**
-   - Ở các ảnh có người bị che khuất một phần (ví dụ người ngồi sau bàn hoặc xe), nhãn của bạn đúng hơn vì con người có tri thức giải phẫu để ước lượng khớp bị che (`v=1`), trong khi model thường dự đoán điểm rơi lệch ra khoảng trống hoặc gán nhầm sang bề mặt vật thể.
-5. **Ảnh bạn gán tệ nhất có *cũng* là ảnh model đoán tệ nhất không? Nếu có, điều đó nói gì về bức ảnh đó?**
-   - Thường có sự trùng hợp ở các ảnh có độ phân giải thấp hoặc ánh sáng phức tạp / người bị che khuất nghiêm trọng. Điều này phản ánh độ mơ hồ cố hữu (inherent ambiguity) của dữ liệu thị giác: khi con người gặp khó khăn trong việc xác định mốc giải phẫu thì mạng nơ-ron cũng thiếu các đặc trưng trực quan để nhận diện.
+   - Bảng số liệu cho thấy `box_mAP50-95` đạt **0.8041**, trong khi `pose_mAP50-95` chỉ đạt **0.6908** (chênh lệch ~11.33%). Ở mức mAP50, `box_mAP50` đạt tới **0.9600** so với **0.8450** của pose (chênh lệch 11.5%).
+   - Model tìm **người** (bounding box) dễ hơn rất nhiều so với tìm **khớp** (keypoints).
+   - Lý do: Bounding box là đặc trưng cấp cao toàn thể (global feature: hình dáng, tỉ lệ cơ thể, khuôn mặt) có kích thước lớn, dễ nhận diện ngay cả khi ảnh mờ. Trong khi đó, định vị 17 khớp (local feature) đòi hỏi độ chính xác pixel cực cao, rất nhạy cảm với tư thế xoay, biến dạng hoặc bị che khuất (như cổ tay, cổ chân).
+3. **Ở mục 5, tìm một ảnh model đoán sai. Gọi tên lỗi theo bốn loại của slide 43 (lệch nhẹ / đảo trái/phải / nhầm người / trượt hẳn):**
+   - Quan sát kết quả visualize 10 ảnh test ở Mục 5 (ảnh `test_02.jpg` và `test_03.jpg` - các cảnh có 2 người đứng sát nhau):
+   - Model gặp lỗi **trượt hẳn** ở khớp cổ tay (cổ tay của người bị che khuất sau lưng nhưng model vẫn vẽ khớp ra vùng nền trống bên cạnh) và lỗi **lệch nhẹ** ở các khớp mắt cá chân / đầu gối do góc chụp nghiêng.
+4. **Ở mục 6, ảnh nào có OKS thấp nhất giữa bạn và model? Ai đúng - và bạn dựa vào đâu để nói vậy?**
+   - Theo bảng kết quả đo ở Mục 6, ảnh có OKS thấp nhất là **`train_06` (OKS = 0.573)**, tiếp theo là `train_11` (OKS = 0.617). Ngoài ra có 2 ảnh bị lệch số người dự đoán: `train_10` (model đoán 2 / bạn gán 1) và `train_03` (model đoán 4 / bạn gán 2).
+   - **Nhãn của bạn đúng.**
+   - Căn cứ: Bộ nhãn của bạn đã qua đối chiếu độc lập với tập Gold đạt OKS 0.915 (đủ 29 người). Ở `train_06`, người bị che khuất phức tạp nên con người có tri thức nhân trắc học để ước lượng đúng vị trí xương (`v=1`), trong khi model đoán trượt ra ngoài. Ở `train_03` và `train_10`, model bị "ảo giác" (false positive), nhầm lẫn các vật thể/hoa văn ở hậu cảnh thành người.
+5. **Trong `tools/evaluate_pose_annotations.py` bạn đã có OKS nhãn-của-bạn vs gold. Ảnh nào bạn gán tệ nhất *cũng* là ảnh model đoán tệ nhất? Nếu có, điều đó nói gì về ảnh đó?**
+   - Trong `eval_vs_gold.json`, ảnh bạn gán có OKS thấp nhất là `train_13.jpg` (OKS người #1 = 0.707) và `train_01.jpg` (OKS người #2 = 0.856).
+   - Trùng hợp là ở bảng Mục 6, `train_01` (OKS = 0.654) và `train_13` (OKS = 0.688) cũng thuộc nhóm có OKS model vs nhãn thấp nhất.
+   - **Ý nghĩa:** Điều này khẳng định sự tồn tại của **độ mơ hồ cố hữu (inherent visual ambiguity)** trong dữ liệu thị giác. Ở các bức ảnh người bị che khuất sâu, chụp ngược sáng hoặc bị cắt qua mép ảnh, cả con người lẫn mô hình thị giác máy tính đều gặp khó khăn lớn nhất trong việc trích xuất đặc trưng và xác định mốc giải phẫu.
 
 ## 5. Một rule evidence bạn đã dùng
 
