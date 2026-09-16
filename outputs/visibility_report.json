@@ -1,0 +1,135 @@
+{
+  "report": {
+    "label_dir": "dataset\\labels\\train",
+    "files": 20,
+    "people": 29,
+    "mean_num_keypoints": 16.17,
+    "per_keypoint": [
+      {
+        "index": 0,
+        "name": "nose",
+        "v2_visible": 28,
+        "v1_occluded": 1,
+        "v0_outside": 0
+      },
+      {
+        "index": 1,
+        "name": "left_eye",
+        "v2_visible": 28,
+        "v1_occluded": 1,
+        "v0_outside": 0
+      },
+      {
+        "index": 2,
+        "name": "right_eye",
+        "v2_visible": 27,
+        "v1_occluded": 1,
+        "v0_outside": 1
+      },
+      {
+        "index": 3,
+        "name": "left_ear",
+        "v2_visible": 26,
+        "v1_occluded": 3,
+        "v0_outside": 0
+      },
+      {
+        "index": 4,
+        "name": "right_ear",
+        "v2_visible": 23,
+        "v1_occluded": 5,
+        "v0_outside": 1
+      },
+      {
+        "index": 5,
+        "name": "left_shoulder",
+        "v2_visible": 27,
+        "v1_occluded": 2,
+        "v0_outside": 0
+      },
+      {
+        "index": 6,
+        "name": "right_shoulder",
+        "v2_visible": 29,
+        "v1_occluded": 0,
+        "v0_outside": 0
+      },
+      {
+        "index": 7,
+        "name": "left_elbow",
+        "v2_visible": 29,
+        "v1_occluded": 0,
+        "v0_outside": 0
+      },
+      {
+        "index": 8,
+        "name": "right_elbow",
+        "v2_visible": 29,
+        "v1_occluded": 0,
+        "v0_outside": 0
+      },
+      {
+        "index": 9,
+        "name": "left_wrist",
+        "v2_visible": 26,
+        "v1_occluded": 3,
+        "v0_outside": 0
+      },
+      {
+        "index": 10,
+        "name": "right_wrist",
+        "v2_visible": 23,
+        "v1_occluded": 5,
+        "v0_outside": 1
+      },
+      {
+        "index": 11,
+        "name": "left_hip",
+        "v2_visible": 24,
+        "v1_occluded": 5,
+        "v0_outside": 0
+      },
+      {
+        "index": 12,
+        "name": "right_hip",
+        "v2_visible": 28,
+        "v1_occluded": 1,
+        "v0_outside": 0
+      },
+      {
+        "index": 13,
+        "name": "left_knee",
+        "v2_visible": 26,
+        "v1_occluded": 0,
+        "v0_outside": 3
+      },
+      {
+        "index": 14,
+        "name": "right_knee",
+        "v2_visible": 25,
+        "v1_occluded": 0,
+        "v0_outside": 4
+      },
+      {
+        "index": 15,
+        "name": "left_ankle",
+        "v2_visible": 18,
+        "v1_occluded": 4,
+        "v0_outside": 7
+      },
+      {
+        "index": 16,
+        "name": "right_ankle",
+        "v2_visible": 17,
+        "v1_occluded": 5,
+        "v0_outside": 7
+      }
+    ],
+    "totals": {
+      "v2_visible": 433,
+      "v1_occluded": 36,
+      "v0_outside": 24
+    }
+  },
+  "comparison": null
+}
